@@ -4,12 +4,12 @@
   "main":"index.js",
   "scripts":{
     "pretest":"eslint .",
-    "test":"tape tests/**/*.js"
+    "test":"tape tests/**/*.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository":{
     "type":"git",
-    "url":"git+https://github.com/dferber90/ciara.git",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "url":"git+https://github.com/dferber90/ciara.git"
   },
   "keywords":[
     "meteor"
