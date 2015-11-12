@@ -8,7 +8,8 @@
   },
   "repository":{
     "type":"git",
-    "url":"git+https://github.com/dferber90/ciara.git"
+    "url":"git+https://github.com/dferber90/ciara.git",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords":[
     "meteor"
