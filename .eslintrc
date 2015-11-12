@@ -1,0 +1,10 @@
+---
+
+root: true
+
+extends:
+  - airbnb/legacy
+
+rules:
+  semi: [2, "never"]
+  no-var: 0
