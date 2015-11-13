@@ -26,6 +26,7 @@ module.exports = {
     var instrumentedCode = instrumenter.instrumentSync(code, filename)
     var script = new vm.Script(instrumentedCode, { filename: filename })
     script.isInstrumented = true
+    script.run = this.runScriptInContext.bind(null, script)
     return script
   },
   runInContext: function runInContext(filename, context, fn) {
