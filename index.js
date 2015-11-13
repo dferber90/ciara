@@ -5,45 +5,38 @@ var istanbul = require('istanbul')
 var instrumenter = new istanbul.Instrumenter()
 var collector = new istanbul.Collector()
 var reporter = new istanbul.Reporter()
-var sandboxes = []
-var config = { report: true }
+var coverageObjects = []
 
 process.on('exit', function onExit() {
   var sync = true
 
-  if (config.report) {
-    sandboxes.map(function mapSandbox(sandbox) {
-      collector.add(sandbox.__coverage__)
-    })
+  coverageObjects.map(function mapSandbox(coverageObject) {
+    collector.add(coverageObject)
+  })
 
+  if (coverageObjects.length > 0) {
     reporter.addAll([ 'lcov', 'clover' ])
     reporter.write(collector, sync, function anonymous() {})
   }
 })
 
 module.exports = {
-  runInContext: function runInContext(filename, context, fn) {
+  getScript: function getScript(filename) {
     var code = fs.readFileSync(filename).toString()
-    var instrumentedCode = config.report ?
-      instrumenter.instrumentSync(code, filename) : code
-    var sandbox = vm.createContext(context)
+    var instrumentedCode = instrumenter.instrumentSync(code, filename)
     var script = new vm.Script(instrumentedCode, { filename: filename })
-    script.runInContext(sandbox)
-    sandboxes.push(sandbox)
-    if (fn) {
-      fn(sandbox)
-    }
-    return sandbox
+    script.isInstrumented = true
+    return script
   },
-
-  config: function configFn(additionalOptions) {
-    var option
-    if (additionalOptions) {
-      for (option in additionalOptions) {
-        if (additionalOptions.hasOwnProperty(option)) {
-          config[option] = additionalOptions[option]
-        }
-      }
-    }
+  runInContext: function runInContext(filename, context, fn) {
+    var script = this.getScript(filename)
+    return this.runScriptInContext(script, context, fn)
+  },
+  runScriptInContext: function runScriptInContext(script, context, fn) {
+    var sandbox = vm.createContext(context)
+    script.runInContext(sandbox)
+    if (script.isInstrumented) coverageObjects.push(sandbox.__coverage__)
+    if (fn) fn(sandbox)
+    return sandbox
   },
 }
