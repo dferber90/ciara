@@ -1,40 +1,40 @@
 {
-  "name":"ciara",
-  "description":"Fast tests for Meteor",
-  "main":"index.js",
-  "scripts":{
-    "pretest":"eslint .",
-    "test":"tape tests/**/*.js",
+  "name": "ciara",
+  "description": "Fast tests for Meteor",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "tape tests/**/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "repository":{
-    "type":"git",
-    "url":"git+https://github.com/dferber90/ciara.git"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dferber90/ciara.git"
   },
-  "keywords":[
+  "keywords": [
     "meteor"
   ],
-  "author":"Dominik Ferber <dominik.ferber+npm@gmail.com> (http://dferber.de/)",
-  "license":"MIT",
-  "bugs":{
-    "url":"https://github.com/dferber90/ciara/issues"
+  "author": "Dominik Ferber <dominik.ferber+npm@gmail.com> (http://dferber.de/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dferber90/ciara/issues"
   },
-  "homepage":"https://github.com/dferber90/ciara#readme",
-  "dependencies":{
-    "istanbul":"0.4.0"
+  "homepage": "https://github.com/dferber90/ciara#readme",
+  "dependencies": {
+    "istanbul": "0.4.0"
   },
-  "devDependencies":{
-    "cz-conventional-changelog":"1.1.4",
-    "eslint":"1.9.0",
-    "eslint-config-airbnb":"1.0.0",
-    "ghooks":"1.0.0",
-    "semantic-release":"4.3.5",
-    "tape":"4.2.2",
-    "validate-commit-msg":"1.0.0"
+  "devDependencies": {
+    "cz-conventional-changelog": "1.1.4",
+    "eslint": "1.10.1",
+    "eslint-config-airbnb": "1.0.0",
+    "ghooks": "1.0.0",
+    "semantic-release": "4.3.5",
+    "tape": "4.2.2",
+    "validate-commit-msg": "1.0.0"
   },
-  "config":{
-    "commitizen":{
-      "path":"./node_modules/cz-conventional-changelog"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "files": [
