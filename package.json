@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/dferber90/ciara#readme",
   "dependencies": {
-    "istanbul": "0.4.0"
+    "istanbul": "0.4.1"
   },
   "devDependencies": {
     "cz-conventional-changelog": "1.1.4",
